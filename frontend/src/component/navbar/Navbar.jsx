@@ -1,11 +1,13 @@
 import logo from "../../Images/site_assets/favicon.webp"
 import "./navbar.css"
 import { Link } from "react-router-dom"
-import { useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import Profile from "../profile/Profile"
 import ThemeButton from "../themeChange/ThemeButton"
+import { ThemeContext } from '../../context/ThemeContext'
 
 const Navbar = () => {
+  const { darkMode } = useContext(ThemeContext)
   const [navbar, setNavbar] = useState(false)
   const changeBackground = () => {
     if (window.scrollY >= 100) {
@@ -34,7 +36,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className={navbar ? "navbar" : "navbar_scroll"}>
+    <nav className={navbar ? "navbar" : "navbar_scroll"} style={{ filter: darkMode ? "invert(0.99)" : "invert(0)" }}>
       <div className="community_logo">
         <div style={{ display: "flex" }}>
           <img
